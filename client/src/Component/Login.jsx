@@ -1,6 +1,36 @@
 import React,{useState} from 'react'
 import {useNavigate} from "react-router-dom"
-export default function Login() {
+
+
+
+// src/services/authService.js
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../firebase";
+
+export const emailSignUp = (email, pwd) =>
+  createUserWithEmailAndPassword(auth, email, pwd);
+
+export const emailSignIn = (email, pwd) =>
+  signInWithEmailAndPassword(auth, email, pwd);
+
+export const googleSignIn = () =>
+  signInWithPopup(auth, new GoogleAuthProvider());
+
+
+export default async function  Login() {
+
+  const token = await auth.currentUser?.getIdToken();
+
+
+
+
+
+
   const navigate = useNavigate()
   const [form,setForm] = useState({})
   const onSubmit =async(e)=>{

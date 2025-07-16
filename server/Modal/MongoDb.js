@@ -1,30 +1,18 @@
 const mongoose = require("mongoose");
 
+const connection = async () => {
+  try {
+    let aa = await mongoose
+      .connect(
+        process.env.MONGODB_URI,
+        { dbName: "deploy" }
+      )
+      .then(() => {
+        console.log("mongoDb connected successfully");
+      });
+  } catch (error) {
+    console.log(" error", error);
+  }
+};
 
-
-
-const connection = async()=>{
-    try {
-      let aa = await  mongoose.connect("mongodb+srv://saurabhwarhade28:gu9ShzGztvVkQNs6@merndevelopmentproject.abihkuk.mongodb.net/?retryWrites=true&w=majority&appName=MERNdevelopmentProject",{dbName:"deploy"}).then(()=>{
-           console.log("mongoDb connected successfully")
-        })
-      
-        
-    } catch (error) {
-        console.log(" error",error)
-    }
-}
-
-
-
-
-
-
-module.exports = connection
-
-
-
-
-
-
-  
+module.exports = connection;

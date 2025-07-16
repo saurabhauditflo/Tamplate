@@ -1,4 +1,6 @@
 var createError = require('http-errors');
+// server.js
+require('dotenv').config();   // ← loads .env into process.env
 const connection = require("./Modal/MongoDb")
 var express = require('express');
 var path = require('path');
@@ -6,9 +8,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors")
 const {setToken,verifyToken} = require("./Helper/jwtVerification")
+const verifyFirebaseToken = require("./Middleware/verifyFirebaseToken");
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var Meddleware = require("./Middleware/error")
+
 var app = express();
 
 

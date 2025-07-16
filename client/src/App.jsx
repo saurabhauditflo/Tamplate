@@ -36,6 +36,7 @@ const location = useLocation()
 
   return (
     <>
+    <AuthProvider>
     <ErrorBoundary fallback="Error">
     <Suspense  fallback={<>Loading...</>}>
      { (location?.pathname !== "/register" && location?.pathname !== "/login") &&  <Navbar/> }
@@ -49,6 +50,7 @@ const location = useLocation()
     </Routes>
     </Suspense>
     </ErrorBoundary>
+    </AuthProvider>
     
     </>
   )
